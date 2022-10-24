@@ -47,19 +47,17 @@ const Navbar = () => {
                         </span>
                         <input type="search" name="Search" placeholder="Search..." className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none bg-gray-800 text-gray-100 focus:bg-gray-900" />
                     </div>
-                    <Link rel="noopener noreferrer" to='/login'>
-                        <button type="button" className="hidden px-6 py-2 font-semibold rounded lg:block bg-violet-400 text-gray-900">Log in</button>
-                    </Link>
-                    <Link rel="noopener noreferrer" to='/register'>
-                        <button type="button" className="hidden px-6 py-2 font-semibold rounded lg:block bg-violet-400 text-gray-900">Register</button>
-                    </Link>
+                    
                     {user?.email && <span>Welcome, {user.email}</span>}
                     {
                         user?.email ?
                             <button onClick={handleSignOut} className="btn btn-sm">Log out</button>
-                            : <Link to='/login'>
-                                <button className='btn btn-sm'>Log In</button>
-                            </Link>
+                            : <Link rel="noopener noreferrer" to='/login'>
+                        <button type="button" className="hidden px-6 py-2 font-semibold rounded lg:block bg-violet-400 text-gray-900">Log in</button>
+                              </Link>
+                    // <Link rel="noopener noreferrer" to='/register'>
+                    //     <button type="button" className="hidden px-6 py-2 font-semibold rounded lg:block bg-violet-400 text-gray-900">Register</button>
+                    // </Link>
                     }
                 </div>
                 <button title="Open menu" type="button" className="p-4 lg:hidden">

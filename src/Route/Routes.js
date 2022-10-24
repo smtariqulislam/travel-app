@@ -5,6 +5,7 @@ import Login from "../components/Login"
 import Register from '../components/Register'
 import Travel from '../components/Travel'
 import Blog from "../components/Blog";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/travel',
-                element: <Travel></Travel>,
+                element: <PrivateRoute><Travel></Travel></PrivateRoute>,
 
             },
             {

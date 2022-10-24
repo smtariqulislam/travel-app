@@ -4,7 +4,7 @@ import { AuthContext } from '../context/UserContext';
 
 const Register = () => {
 
-    const {createUser}= useContext(AuthContext)
+    const { createUser, singInWithGoogle }= useContext(AuthContext)
     console.log('createUser',createUser);
     const handleSubmit = event => {
         event.preventDefault();
@@ -24,6 +24,13 @@ const Register = () => {
             console.error(error)
         })
 
+    }
+    const handleGoogleSignIn = () =>{
+        singInWithGoogle()
+        .then(result=>{
+            const user = result.user;
+            console.log(user);
+        })
     }
 
     return (
@@ -58,10 +65,11 @@ const Register = () => {
                                 <button className="w-full px-8 py-3 font-semibold rounded-md bg-violet-400 hover:bg-violet-800 text-gray-900">Register</button>
                             </div>
                             <p className="px-6 text-sm text-center mx-2 text-gray-400">Have an  account?
-                                <Link rel="noopener noreferrer" to='/login' className="hover:underline text-violet-400">login</Link>.
+                                <Link  to='/login' className="hover:underline text-violet-400">login</Link>.
                             </p>
                         </div>
                     </form>
+                    <button onClick={handleGoogleSignIn} className="px-8 py-3 font-semibold border rounded dark:border-gray-100 hover:bg-gray-500 dark:text-gray-100"> Sign In With Google</button>
                 </div>
             </div>
         </div>
