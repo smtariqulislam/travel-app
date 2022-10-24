@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/UserContext';
 
 const Navbar = () => {
+
+    const {user,logout} = useContext(AuthContext);
+    // console.log('context',user)
+    
+    const handleSignOut =()=>{
+        logout()
+        .then(()=>{})
+        .catch(error=>console.error(error))
+    }
+
     return (
         <header className="p-4 bg-gray-800 text-gray-100">
             <div className="container flex justify-between h-16 mx-auto">
@@ -42,13 +53,21 @@ const Navbar = () => {
                     <Link rel="noopener noreferrer" to='/register'>
                         <button type="button" className="hidden px-6 py-2 font-semibold rounded lg:block bg-violet-400 text-gray-900">Register</button>
                     </Link>
-                   
+                    {user?.email && <span>Welcome, {user.email}</span>}
+                    {
+                        user?.email ?
+                            <button onClick={handleSignOut} className="btn btn-sm">Log out</button>
+                            : <Link to='/login'>
+                                <button className='btn btn-sm'>Log In</button>
+                            </Link>
+                    }
                 </div>
                 <button title="Open menu" type="button" className="p-4 lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-gray-100">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
+
                
             </div>
         </header>
